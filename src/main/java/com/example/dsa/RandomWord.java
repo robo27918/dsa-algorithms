@@ -4,11 +4,19 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class RandomWord{
     public static void main(String []args){
-        System.out.println("Princeton package working");        
+        // System.out.println("Princeton package working"); 
+        String winner = "";
+        double counter = 1;
         while (!StdIn.isEmpty()){
             String input = StdIn.readString();
-            StdOut.println(input);
+            if (StdRandom.bernoulli(1.0/counter)){
+                    winner = input;
+            }
+            counter++;
         }
+        StdOut.println(winner);
     }
+
+
 
 }
