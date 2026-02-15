@@ -27,30 +27,31 @@ public class Percolation {
         }
         if (!isOpen(row,col)){
             this.grid[row][col] = true;
-        }
-        // connect to the virtual top ?
-        int currID = getId(row,col);
-        //UF.union(currID,TOP);
-        // union with any other neighnors that might be open
-        // Connects to top only if row is 1
-        if(row ==1){
-            UF.union(currID,TOP_ID);
-        }
+        
+            // connect to the virtual top ?
+            int currID = getId(row,col);
+            //UF.union(currID,TOP);
+            // union with any other neighnors that might be open
+            // Connects to top only if row is 1
+            if(row ==1){
+                UF.union(currID,TOP_ID);
+            }
 
-        if(row > 1 && isOpen(row-1,col)){
-            UF.union(currID, getId(row-1,col));
-        }
-        //checks bottom
-        if(row < N && isOpen(row+1,col)){
-            UF.union(currID, getId(row+1,col));
-        }
-        //checks left
-        if(col > 1 && isOpen(row,col-1)){
-            UF.union(currID, getId(row,col-1));
-        }
-        //checks right
-        if(col < N && isOpen(row,col+1)){
-            UF.union(currID, getId(row,col+1));
+            if(row > 1 && isOpen(row-1,col)){
+                UF.union(currID, getId(row-1,col));
+            }
+            //checks bottom
+            if(row < N && isOpen(row+1,col)){
+                UF.union(currID, getId(row+1,col));
+            }
+            //checks left
+            if(col > 1 && isOpen(row,col-1)){
+                UF.union(currID, getId(row,col-1));
+            }
+            //checks right
+            if(col < N && isOpen(row,col+1)){
+                UF.union(currID, getId(row,col+1));
+            }
         }
 
     }
@@ -69,9 +70,10 @@ public class Percolation {
             throw new IllegalArgumentException("ROW or COL are outside the expected range!");
         }
         //TODO: implement
-        int currID = getID(row,col);
+        
+        int currID = getId(row,col);
         if(UF.find(currID) == UF.find(TOP_ID)){
-            return true;
+            return true && isOpen(row,col);
         }
         return false;
     }
@@ -93,17 +95,27 @@ public class Percolation {
     public boolean percolates(){
         // go through the bottom rows
         // and use isFull on each (row,col)
-        for
+        for(int i =1; i <=this.N;i++){
+            if(isFull(this.N,i)){
+                return true;
+            }
+        }
+        return false;
     }
     //method for mapping row and col to id
     private int getId(int row,int col){ 
         if (row <=0 || row >this.N || col <=0 || col >this.N){
-            throw new IllegalArgumentException("ROW or COL are outside the expected range!")
+            throw new IllegalArgumentException("ROW or COL are outside the expected range!");
         }
         return this.N * (row -1) + col;
     }
 
 
     // test client (optional)
-    public static void main(String[] args)
+    public static void main(String[] args){
+        Percolation p = new Percolation(10);
+        System.out.println(p.numberOfOpenSites());
+        System.out.println(p.isFull(3,5));
+        System.out.println("Something to test...");
+    }
 }
