@@ -8,6 +8,7 @@ public class Percolation {
     private int N ;
     private WeightedQuickUnionUF UF;
     private int TOP_ID;
+    private int  totalOpen;
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n){
         if (n <=0){
@@ -27,6 +28,7 @@ public class Percolation {
         }
         if (!isOpen(row,col)){
             this.grid[row][col] = true;
+            this.totalOpen ++;
         
             // connect to the virtual top ?
             int currID = getId(row,col);
@@ -69,7 +71,6 @@ public class Percolation {
         if (row <=0 || row >this.N || col <=0 || col >this.N){
             throw new IllegalArgumentException("ROW or COL are outside the expected range!");
         }
-        //TODO: implement
         
         int currID = getId(row,col);
         if(UF.find(currID) == UF.find(TOP_ID)){
@@ -80,16 +81,7 @@ public class Percolation {
 
     // returns the number of open sites
     //
-    public int numberOfOpenSites(){
-            int count = 0;
-            // brute force: loop through the grid and see what is open
-            for (int i = 1; i < grid.length; i++) {
-                for (int j = 1; j < grid.length; j++) {
-                   if(isOpen(i,j)){count++;} 
-                }   
-            }
-            return count;
-    }
+    public int numberOfOpenSites(){return this.totalOpen;}
 
     // does the system percolate?
     public boolean percolates(){
