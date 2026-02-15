@@ -9,6 +9,9 @@ public class Percolation {
     private WeightedQuickUnionUF UF;
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n){
+        if (n <=0){
+            throw new IllegalArgumentException("Grid size must be greater than zero!")
+        }
         this.N = n;
         // create the WeightedQuickFind and set it as an attribute
         UF = new WeightedQuickUnionUF(n*n);
@@ -17,17 +20,26 @@ public class Percolation {
 
     // opens the site (row, col) if it is not open already
     public void open(int row, int col){
+        if (row <=0 || row >this.N || col <=0 || col >this.N){
+            throw new IllegalArgumentException("ROW or COL are outside the expected range!")
+        }
         if (!isOpen(row,col)){
             this.grid[row][col] = true;
         }
     }
 
     // is the site (row, col) open?
-    public boolean isOpen(int row, int col){return this.grid[row][col];}
+    public boolean isOpen(int row, int col){
+        if (row <=0 || row >this.N || col <=0 || col >this.N){
+            throw new IllegalArgumentException("ROW or COL are outside the expected range!")
+        }
+        return this.grid[row][col];}
 
     // is the site (row, col) full?
-    public boolean isFull(int row, int col){
-        
+    public boolean isFull(int row, int col){ 
+        if (row <=0 || row >this.N || col <=0 || col >this.N){
+            throw new IllegalArgumentException("ROW or COL are outside the expected range!")
+        }
     }
 
     // returns the number of open sites
@@ -57,7 +69,11 @@ public class Percolation {
         use UnionFind()
     }
     //method for mapping row and col to id
-    private int getId(int row,int col){ return this.N * (row -1) + col;}
+    private int getId(int row,int col){ 
+        if (row <=0 || row >this.N || col <=0 || col >this.N){
+            throw new IllegalArgumentException("ROW or COL are outside the expected range!")
+        }
+        return this.N * (row -1) + col;}
 
 
     // test client (optional)
