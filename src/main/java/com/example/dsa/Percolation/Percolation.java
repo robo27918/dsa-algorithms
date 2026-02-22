@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
+//adding comment to test something
 public class Percolation {
     //n*n grid where 1= blocked 0 = open
     private boolean [][] grid; // True means open, False means blocked
