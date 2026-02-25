@@ -18,9 +18,9 @@ public class Percolation {
         this.N = n;
         // create the WeightedQuickFind and set it as an attribute
         this.UF = new WeightedQuickUnionUF(n*n + 2);
-
+        // create UF for bottom portion onl
         this.TOP_ID = n*n ;// designate a slot for the TOP_ID 
-        this.BOTTOM_ID = n*n + 2;                      //
+        this.BOTTOM_ID = n*n + 1;                      //
         this.grid = new boolean [n+1][n+1];
     }   
 
@@ -29,7 +29,7 @@ public class Percolation {
         if (row <=0 || row >this.N || col <=0 || col >this.N){
             throw new IllegalArgumentException("ROW or COL are outside the expected range!");
         }
-        if (!isOpen(row,col) && isFull(row,col)){
+        if (!isOpen(row,col)){
             this.grid[row][col] = true;
             this.totalOpen ++;
         
@@ -47,13 +47,13 @@ public class Percolation {
             this.connectToNei(row-1,col,currID);
             this.connectToNei(row+1,col,currID);
             this.connectToNei(row,col-1,currID);
-            this.connectToNei(row-,col+1,currID);
+            this.connectToNei(row,col+1,currID);
         }
 
     }
-    private connectToNei(int row,itn col,int currID){
+    private void connectToNei(int row,int col,int currID){
         if (row >= 1 && row <= this.N && col >= 1 && col <=this.N){
-            if (isOpen(row,col){
+            if (isOpen(row,col)){
                 int neiID = this.getId(row, col);
                 UF.union(currID,neiID);
             }
@@ -86,16 +86,16 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates(){
-        return this.UF.find(BOTTOM_ID) == this.UF.find(TOP_ID);
+        //return this.UF.find(BOTTOM_ID) == this.UF.find(TOP_ID);
         // go through the bottom rows
         // and use isFull on each (row,col)
         //
-        // for(int i =1; i <=this.N;i++){
-        //     if(isFull(this.N,i)){
-        //         return true;
-        //     }
-        // }
-        // return false;
+         for(int i =1; i <=this.N;i++){
+             if(isFull(this.N,i)){
+                 return true;
+             }
+         }
+         return false;
 
     }
     //method for mapping row and col to id
