@@ -12,6 +12,9 @@ public class PercolationStats {
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials){
+        if (n <=0 or trials <=0){
+            throw new IllegalArgumentException("n or trials outside the expected range");
+        }
         this.T = trials;
         this.SQRT_T = Math.sqrt(T);
         xBars = new double [this.T];
@@ -66,7 +69,9 @@ public class PercolationStats {
     }
    // test client (see below)
    public static void main(String[] args){
-        PercolationStats ps = new PercolationStats(100,100);
+        int n = Integer.parseInt(args[0]);
+        int trials = Integer.parseInt(args[1])
+        PercolationStats ps = new PercolationStats(n,trials);
         System.out.println("Mean: " +ps.mean());
         System.out.println("STDDEV: " +ps.stddev());
         System.out.println("Confidence Lo: " +ps.confidenceLo());

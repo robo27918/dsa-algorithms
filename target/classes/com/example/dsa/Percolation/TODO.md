@@ -6,3 +6,6 @@
 2/24/2026
 - add array to be able to get open sites efficiently in the PercolationStats.java file
 - Add virtual bottom to make algo faster
+
+2/25/2026
+-add virtual bottom to Percolation.java

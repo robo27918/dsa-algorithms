@@ -17,10 +17,10 @@ public class Percolation {
         }
         this.N = n;
         // create the WeightedQuickFind and set it as an attribute
-        this.UF = new WeightedQuickUnionUF(n*n + 2);
+        this.UF = new WeightedQuickUnionUF(n*n + 3);
         // create UF for bottom portion onl
-        this.TOP_ID = n*n ;// designate a slot for the TOP_ID 
-        this.BOTTOM_ID = n*n + 1;                      //
+        this.TOP_ID = n*n + 1 ;// designate a slot for the TOP_ID 
+        this.BOTTOM_ID = n*n + 2;                      //
         this.grid = new boolean [n+1][n+1];
     }   
 
