@@ -86,16 +86,16 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates(){
-        //return this.UF.find(BOTTOM_ID) == this.UF.find(TOP_ID);
+        return this.UF.find(BOTTOM_ID) == this.UF.find(TOP_ID);
         // go through the bottom rows
         // and use isFull on each (row,col)
         //
-         for(int i =1; i <=this.N;i++){
-             if(isFull(this.N,i)){
-                 return true;
-             }
-         }
-         return false;
+         // for(int i =1; i <=this.N;i++){
+         //     if(isFull(this.N,i)){
+         //         return true;
+         //     }
+         // }
+         // return false;
 
     }
     //method for mapping row and col to id
@@ -108,10 +108,10 @@ public class Percolation {
 
 
     // test client (optional)
-    public static void main(String[] args){
-        Percolation p = new Percolation(10);
-        System.out.println(p.numberOfOpenSites());
-        System.out.println(p.isFull(3,5));
-        System.out.println("Something to test...");
-    }
+    // public static void main(String[] args){
+    //     Percolation p = new Percolation(10);
+    //     System.out.println(p.numberOfOpenSites());
+    //     System.out.println(p.isFull(3,5));
+    //     System.out.println("Something to test...");
+    // }
 }

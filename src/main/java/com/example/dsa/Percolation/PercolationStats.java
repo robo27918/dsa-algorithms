@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
@@ -75,9 +76,9 @@ public class PercolationStats {
         int width1 = "95% confidence interval".length();
         int width2 = width1 - "mean".length();
         int width3 = width1 - "stddev".length();
-        System.out.println("mean" + String.format("%"+width2+"s"," ") + " = " + ps.mean());
-        System.out.println("stddev" + String.format("%"+width3+"s"," ") + " = " + ps.stddev());
-        System.out.println("95% confidence interval = [" + ps.confidenceLo()
+        StdOut.println("mean" + String.format("%"+width2+"s"," ") + " = " + ps.mean());
+        StdOut.println("stddev" + String.format("%"+width3+"s"," ") + " = " + ps.stddev());
+        StdOut.println("95% confidence interval = [" + ps.confidenceLo()
                 + ", " + ps.confidenceHi() +"]");
    }
    
