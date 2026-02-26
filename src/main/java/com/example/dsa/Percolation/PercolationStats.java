@@ -12,7 +12,7 @@ public class PercolationStats {
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials){
-        if (n <=0 or trials <=0){
+        if (n <=0 || trials <=0){
             throw new IllegalArgumentException("n or trials outside the expected range");
         }
         this.T = trials;
@@ -70,13 +70,15 @@ public class PercolationStats {
    // test client (see below)
    public static void main(String[] args){
         int n = Integer.parseInt(args[0]);
-        int trials = Integer.parseInt(args[1])
+        int trials = Integer.parseInt(args[1]);
         PercolationStats ps = new PercolationStats(n,trials);
-        System.out.println("Mean: " +ps.mean());
-        System.out.println("STDDEV: " +ps.stddev());
-        System.out.println("Confidence Lo: " +ps.confidenceLo());
-        System.out.println("Confidence High: " +ps.confidenceHi());
-        System.out.println("End of first test");
+        int width1 = "95% confidence interval".length();
+        int width2 = width1 - "mean".length();
+        int width3 = width1 - "stddev".length();
+        System.out.println("mean" + String.format("%"+width2+"s"," ") + " = " + ps.mean());
+        System.out.println("stddev" + String.format("%"+width3+"s"," ") + " = " + ps.stddev());
+        System.out.println("95% confidence interval = [" + ps.confidenceLo()
+                + ", " + ps.confidenceHi() +"]");
    }
    
 
